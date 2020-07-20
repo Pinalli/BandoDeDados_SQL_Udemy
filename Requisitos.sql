@@ -120,14 +120,18 @@ INSERT INTO CLIENTE VALUES
 	ANO_PUBLICACAO INT (4)
  );
  
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
+ INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 465, 'Atlas', 49.9,'RJ', 2009 );
  INSERT INTO LIVROS VALUES( 'SQL para leigos', 'João Nunes','M', 450, 'Addison', 98,'SP', 2018 );
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
- INSERT INTO LIVROS VALUES( 'Cavaleiro Real', 'Ana Cláudia','F', 100, 'Caruzzo', '276.60','RS', 2009 );
+ INSERT INTO LIVROS VALUES( 'Receitas Caseiras', 'Celia Tavares','F', 210, 'Atlas', 45,'RJ', 2008 );
+ INSERT INTO LIVROS VALUES( 'Pessoas Efetivas', 'Eduardo Santos','M', 390, 'Beta', 78.99,'RJ', 2018 );
+ INSERT INTO LIVROS VALUES( 'Habitos Saudáveis	', 'Eduardo Santos','m', 630, 'Beta', 150.98,'RJ', 2019 );
+ INSERT INTO LIVROS VALUES( 'A Casa Marrom', 'Hermes Macedo','M', 250	, 'Bubba', 60,'MG', 2016 );
+ INSERT INTO LIVROS VALUES( 'Estacio Querido', 'Geraldo Francisco','M', 310	, 'Insignia', 100	,'ES', 2015 );
+ INSERT INTO LIVROS VALUES( 'Pra sempre amigas', 'Leda Silva','F',510	, 'Insignia',78.98	,'ES', 2011 );
+ INSERT INTO LIVROS VALUES( 'Copas Inesqueciveis', 'Marco Alcantara','M',200, 'Larson',130.98,'RS', 2018 );
+ INSERT INTO LIVROS VALUES( 'O poder da mente', 'Clara Mafra','F',120, 'Continental',56.58,'SP', 2017 );
  
+
  		Nome do Livro	Nome do Autor	Sexo do Autor	Numero de Páginas	Nome da Editora	Valor do Livro	UF da Editora	Ano da Publicacao
 	1	Cavaleiro Real	Ana Claudia	Feminino	465	Atlas	49,9	RJ	2009
 	2	SQL para leigos	João Nunes	Masculino	450	Addison	98	SP	2018
@@ -139,3 +143,48 @@ INSERT INTO CLIENTE VALUES
 	8	Pra sempre amigas	Leda Silva	Feminino	510	Insignia	78,98	ES	2011
 	9	Copas Inesqueciveis	Marco Alcantara	Masculino	200	Larson	130,98	RS	2018
 	10	O poder da mente	Clara Mafra	Feminino	120	Continental	56,58	SP	2017
+
+/* 1. TRAZER TODOS OS DADOS*/
+
+  SELECT * FROM LIVROS;
+  
+/* 2. TRAZER O NOME DO LIVRO E O NOME DA EDITORA (PROJEÇÃO)*/  
+
+SELECT NOME, EDITOR 
+FROM LIVROS;
+
+/* 3. TRAZER O NOME DO LIVRO E A UF DOS LIVROS PUBLICADOS
+ POR AUTORES DO SEXO MASCULINO - (PROJEÇÃO E SELEÇÃO)*/  
+
+SELECT NOME,UF --PROJEÇÃO
+FROM LIVROS
+WHERE SEXO = 'M'; --SELEÇÃO
+	
+/* 4. TRAZER O NOME DO LIVRO E O NUMERO DE PAGINAS DOS 
+LIVROS PUBLICADOS POR AUTORES DO SEXO FEMININO*/  
+
+SELECT NOME,NUM_PAGINAS 
+FROM LIVROS 
+WHERE SEXO = 'F';
+
+/* 5. TRAZER OS VALORES DOS LIVROS DAS EDITORAS DE SAO PAULO*/  
+
+SELECT NOME, VALOR 
+FROM  LIVROS
+WHERE  UF = 'SP';
+ 
+SELECT NOME, VALOR, UF 
+FROM  LIVROS WHERE UF
+LIKE '%SP';
+
+/* 6. TRAZER OS DADOS DOS AUTORES DO SEXO MASC QUE TIVERAM LIVROS PUBLICADOS POR SAO PAULO OU RIO */  
+
+SELECT AUTOR, NOME,SEXO, UF
+FROM  LIVROS
+WHERE SEXO = 'M'
+ AND (UF = 'SP'
+ OR  UF = 'RJ');
+
+
+/* deletar registroS da tabela*/
+DELETE FROM LIVROS WHERE NOME = 'O poder da mente';
