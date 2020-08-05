@@ -1302,7 +1302,47 @@ AND EMAIL = 'BOZO@EMAIL.COM';
 
 /* --------------------PRIMEIRA FORMA NORMAL-------------------*/
 
-
+/*
+	1 - TODO CAMPO VETORIZADO VIRA TABELA
+ CORSS -> (AMARELO, BRANCO, PRETO)
  
+	2 - CAMPO MULTIVALORADO VIRA TABELA
+ ENDERECO ( RUA, CEP, CIDADE, ESTADO)
+ 
+	3 - NECESSITA TER UMA PK
+ 
+*/
+ 
+/* --------------------CARDINALIDADE------------------*/
+/*
+	PRIMEIRO ALGORITIMO - obrigatoriedade (0,)  (0,) (1,) (1,)
+	SEGUNDO ALGORITIMO -  cardinalidade   (,1)  (,n) (,1) (,n)
+*/
 
+CREATE DATABASE COMERCIO;
+USE COMERCIO;
 
+CREATE TABLE CLIENTE (
+
+	id_cliente int PRIMARY KEY AUTO_INCREMENT,
+	nome varchar (100) not null,
+	sexo enum ('M','F') not null,
+	email varchar(50) unique,
+	cpf varchar (11)not null
+);
+
+CREATE TABLE ENDERECO(
+
+	id_endereco int PRIMARY KEY AUTO_INCREMENT,
+	rua varchar (40) not null,
+	bairro varchar(30) not null,
+	cidade varchar (30) not null,
+	estado char(2 ) not null
+);
+
+CREATE TABLE TELEFONE(
+     
+	 id_telefone int PRIMARY KEY AUTO_INCREMENT,
+	 tipo enum ('RES', 'COM', 'CEL') not null,
+	 numero varchar(10) not null
+);
